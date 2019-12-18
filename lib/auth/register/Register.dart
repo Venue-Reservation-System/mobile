@@ -24,6 +24,7 @@ class _RegisterForm extends State<Register>{
 
   bool _validate = false;
   String name, email, mobile,password,confirm_password;
+  bool agreed = false;
 
 //  String confirm_password;
 
@@ -105,7 +106,8 @@ class _RegisterForm extends State<Register>{
     }
 
     _sendToServer() async {
-      if (_key.currentState.validate()) {
+
+      if (_key.currentState.validate() && agreed) {
         // No any error in validation
         _key.currentState.save();
 
@@ -123,15 +125,28 @@ class _RegisterForm extends State<Register>{
 
         );
 
-
-
-
-
-
-        print("Name " + _user.username);
-        print("Mobile "+ _user.password);
-        print("Email "+_user.email);
+//        print("Name " + _user.username);
+//        print("Mobile "+ _user.password);
+//        print("Email "+_user.email);
       } else {
+
+        if(!agreed){
+
+          Fluttertoast.showToast(
+            msg: "please select term & conditions !",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 1,
+            backgroundColor: Colors.black87.withOpacity(0.4),
+            textColor: Colors.white,
+            fontSize: 15.0,
+
+          );
+
+
+        }
+
+
         // validation error
         setState(() {
           _validate = true;
@@ -153,6 +168,7 @@ class _RegisterForm extends State<Register>{
           children: <Widget>[
 
             Container(
+
 
                 width: MediaQuery.of(context).size.width,
                 height: double.infinity,
@@ -377,19 +393,21 @@ class _RegisterForm extends State<Register>{
 
                                     width: double.infinity,
                                     child: Row(
-//                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisSize: MainAxisSize.max,
                                       children: <Widget>[
-//                                        Checkbox(
-////                                          value: checkboxValueB,
-//                                          onChanged: (bool value) {
-//                                            setState(() {
-////                                              checkboxValueB = value;
-//                                            });
-//                                          },
-//                                        ),
+                                        Checkbox(
+                                          value: agreed,
+
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              agreed = value;
+                                            });
+                                          },
+
+                                        ),
                                         InkWell(
-                                          child: Text(
-                                              'I have read and understood \nthe terms and conditions'),
+
+                                          child: Text('I have read and understood \nthe terms and conditions'),
                                           onTap: () {
 //                                            launch("https://google.com");
                                           },
