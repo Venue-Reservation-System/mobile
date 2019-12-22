@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'auth/register/Login.dart';
 import 'auth/register/Register.dart';
 
 
@@ -16,7 +17,9 @@ class Home extends StatelessWidget {
       Navigator.push(
           context,
           new MaterialPageRoute(
-              builder: (context) => new Register()));
+                builder: (context) => new Login()));
+
+//              builder: (context) => new Register()));
 
 
     }

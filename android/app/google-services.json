@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "464782936593",
+    "firebase_url": "https://vrs-system.firebaseio.com",
+    "project_id": "vrs-system",
+    "storage_bucket": "vrs-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464782936593:android:95f0e4ac4cfda9b48dbfb0",
+        "android_client_info": {
+          "package_name": "clipper.com.ashan.clippers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464782936593-htqe7t174agg2clm6htbejik10ik9hh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaQSWQLVa-BM9eNPEZT3idm8q0gROHSi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464782936593-htqe7t174agg2clm6htbejik10ik9hh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

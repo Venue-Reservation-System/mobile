@@ -24,6 +24,7 @@ class _RegisterForm extends State<Register>{
 
   bool _validate = false;
   String name, email, mobile,password,confirm_password;
+  bool agreed = false;
 
 //  String confirm_password;
 
@@ -105,7 +106,8 @@ class _RegisterForm extends State<Register>{
     }
 
     _sendToServer() async {
-      if (_key.currentState.validate()) {
+
+      if (_key.currentState.validate() && agreed) {
         // No any error in validation
         _key.currentState.save();
 
@@ -123,15 +125,25 @@ class _RegisterForm extends State<Register>{
 
         );
 
-
-
-
-
-
-        print("Name " + _user.username);
-        print("Mobile "+ _user.password);
-        print("Email "+_user.email);
       } else {
+
+        if(!agreed){
+
+          Fluttertoast.showToast(
+            msg: "please select term & conditions !",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIos: 1,
+            backgroundColor: Colors.black87.withOpacity(0.4),
+            textColor: Colors.white,
+            fontSize: 15.0,
+
+          );
+
+
+        }
+
+
         // validation error
         setState(() {
           _validate = true;
@@ -153,6 +165,7 @@ class _RegisterForm extends State<Register>{
           children: <Widget>[
 
             Container(
+
 
                 width: MediaQuery.of(context).size.width,
                 height: double.infinity,
@@ -187,9 +200,6 @@ class _RegisterForm extends State<Register>{
               clipper: CustomClipPath(),
 
             ),
-            
-
-
 
             Container(
               padding: const EdgeInsets.only(
@@ -265,7 +275,6 @@ class _RegisterForm extends State<Register>{
 
                                     ),
 
-
                                     decoration: new InputDecoration(
 
                                         labelText: 'username',
@@ -278,34 +287,10 @@ class _RegisterForm extends State<Register>{
 
                                     onSaved: (String val) {
                                       _user.username = val;
-//                                      name = val;
-//                                      print(name);
+
                                     },
                                   ),
-//                                  new TextFormField(
-//
-//                                    style: TextStyle(
-//                                        fontSize: 14.0,
-//                                        color: Colors.white
-//
-//                                    ),
-//                                      decoration: new InputDecoration(
-//
-//                                        labelText: 'Mobile Number',
-//                                        labelStyle: TextStyle(
-//                                            color: Colors.white
-//                                        ),
-//                                      ),
-//
-//
-//
-//
-//                                      keyboardType: TextInputType.phone,
-//                                      maxLength: 10,
-//                                      validator: validateMobile,
-//                                      onSaved: (String val) {
-//                                        mobile = val;
-//                                      }),
+
                                   new TextFormField(
                                       style: TextStyle(
                                           fontSize: 14.0,
@@ -377,19 +362,21 @@ class _RegisterForm extends State<Register>{
 
                                     width: double.infinity,
                                     child: Row(
-//                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisSize: MainAxisSize.max,
                                       children: <Widget>[
-//                                        Checkbox(
-////                                          value: checkboxValueB,
-//                                          onChanged: (bool value) {
-//                                            setState(() {
-////                                              checkboxValueB = value;
-//                                            });
-//                                          },
-//                                        ),
+                                        Checkbox(
+                                          value: agreed,
+
+                                          onChanged: (bool value) {
+                                            setState(() {
+                                              agreed = value;
+                                            });
+                                          },
+
+                                        ),
                                         InkWell(
-                                          child: Text(
-                                              'I have read and understood \nthe terms and conditions'),
+
+                                          child: Text('I have read and understood \nthe terms and conditions'),
                                           onTap: () {
 //                                            launch("https://google.com");
                                           },
@@ -469,44 +456,11 @@ class _RegisterForm extends State<Register>{
 
       ),
 
-
-
-
-
-
-
-
-
-
-
-
     );
-
-
-
-
-
-
-
-
-
-
 
   }
 
-
-
-
 }
-
-
-
-
-
-
-
-
-
 
 
 class CustomClipPath extends CustomClipper<Path> {
@@ -536,176 +490,3 @@ class CustomClipPath extends CustomClipper<Path> {
 
 }
 
-
-
-
-
-
-
-//******************************************************************************************************************************************
-
-
-
-
-
-
-
-
-
-
-//*****************************************************************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import 'package:flutter/material.dart';
-//
-//class Register extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//
-//    return Scaffold(
-//
-//      body: Stack(
-//
-//        children: <Widget>[
-//
-//          Container(
-//
-//            width: double.infinity,
-//            height: double.infinity,
-//            decoration: BoxDecoration(
-//              gradient: LinearGradient(
-//                  begin: Alignment.topLeft,
-//                  end: Alignment.centerRight,
-//                  colors: [Colors.black87 , Colors.blueGrey[500]])
-//
-//          )
-//
-//          ),
-//          ClipPath(
-//
-//            child: Container(
-//
-//              width: double.infinity,
-//              height: double.infinity,
-////              color: Colors.green,
-//                decoration: BoxDecoration(
-//                  boxShadow: [
-//                    BoxShadow(
-//                      color: Colors.grey.withOpacity(0.2),
-//                      spreadRadius: 10,
-//                      blurRadius: 5,
-//                      offset: Offset(0, 55), // changes position of shadow
-//                    ),
-//                  ],
-//
-//
-//                )
-//            ),
-//            clipper: CustomClipPath_1(),
-//
-//          ),
-//
-//          ClipPath(
-//
-//            child: Container(
-//
-//                width: double.infinity,
-//                height: double.infinity,
-////              color: Colors.green,
-//                decoration: BoxDecoration(
-//                  boxShadow: [
-//                    BoxShadow(
-//                      color: Colors.grey.withOpacity(0.3),
-//                      spreadRadius: 20,
-//                      blurRadius: 20,
-//                      offset: Offset(0, 50), // changes position of shadow
-//                    ),
-//                  ],
-//
-//
-//                )
-//            ),
-//            clipper: CustomClipPath_2(),
-//
-//          )
-//
-//        ],
-//
-//      )
-//
-//    );
-//  }
-//
-//
-//
-//
-//}
-//
-//
-//class CustomClipPath_1 extends CustomClipper<Path> {
-//  var radius=10.0;
-//
-//  @override
-//  Path getClip(Size size) {
-//    Path path = Path();
-//    path.lineTo(0,200);
-//    path.lineTo(size.width-100, size.height-180);
-////
-//    path.lineTo(90, size.height);
-//    path.lineTo(size.width, size.height);
-//    path.lineTo(size.width, 0);
-//
-//    path.close();
-//
-//    return path;
-//
-//  }
-//
-//  @override
-//  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-//
-//}
-//
-//
-//
-//
-//class CustomClipPath_2 extends CustomClipper<Path> {
-//
-//
-//  @override
-//  Path getClip(Size size) {
-//    Path path = Path();
-//    path.lineTo(165,0);
-//    path.lineTo(80,100);
-//
-//    path.lineTo(size.width, size.height-240);
-//    path.lineTo(size.width, 0);
-////    path.lineTo(size.width, 0);
-//
-//    path.close();
-//
-//    return path;
-//
-//  }
-//
-//  @override
-//  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-//
-//}
